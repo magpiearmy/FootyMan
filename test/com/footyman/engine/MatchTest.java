@@ -1,10 +1,13 @@
 package com.footyman.engine;
 
+import com.footyman.MatchReader;
 import com.footyman.domain.Player;
 import com.footyman.domain.Team;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
+import java.io.IOException;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +20,6 @@ class MatchTest {
 
     @Test
     void testPlay() {
-        Match match = new Match();
         Team home = new Team();
         home.addPlayer(new Player(5, 6));
         home.addPlayer(new Player(6, 6));
@@ -44,7 +46,19 @@ class MatchTest {
         away.addPlayer(new Player(9, 6));
         away.addPlayer(new Player(8, 6));
 
-        Result result = match.play(home, away);
+        Match match = new Match(home, away);
+        Result result = match.play();
     }
 
+    @Test
+    void testMatchFromFile() throws Exception {
+
+        for (int i = 0; i < 20; i++) {
+            MatchReader matchReader = new MatchReader();
+            Match match = matchReader.readMatch();
+
+            Result result = match.play();
+            System.out.println(result.getHomeGoals() + " - " + result.getAwayGoals());
+        }
+    }
 }

@@ -2,7 +2,6 @@ package com.footyman.engine;
 
 public class Result {
     private int homeGoals = 0;
-
     private int awayGoals = 0;
 
     public Result(int homeGoals, int awayGoals) {
