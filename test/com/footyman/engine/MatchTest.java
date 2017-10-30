@@ -53,10 +53,10 @@ class MatchTest {
     @Test
     void testMatchFromFile() throws Exception {
 
-        for (int i = 0; i < 20; i++) {
-            MatchReader matchReader = new MatchReader();
-            Match match = matchReader.readMatch();
+        MatchReader matchReader = new MatchReader();
+        Match match = matchReader.readMatch();
 
+        for (int i = 0; i < 20; i++) {
             Result result = match.play();
             System.out.println(result.getHomeGoals() + " - " + result.getAwayGoals());
         }
